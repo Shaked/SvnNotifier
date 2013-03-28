@@ -1,5 +1,5 @@
 <html>
-<body>  
+<body>   
 	{% set bgColors = ["#efefef","#fff"] %}
 	{% set i = 1 %}
 	{% set addedFiles    = 0 %} 
@@ -8,13 +8,14 @@
 	<div class="parsedContent">
 		<table cellspacing="0" cellpadding="0" border="0" rules="cols">
 			<tbody>
-				{% for fullpath, fileInfo in parsedContent %} 
-					{% set filename = fileInfo.getFilename %} 
 				<tr style="border-bottom-width: 1px; border-bottom-style: solid">
 					<td
 						style="padding: 0; padding-top: .2em; padding-left: .3em; padding-right: .3em; text-align: left"
 						colspan="4">Commit in <b>{{ path.getName }}</b></td>
 				</tr>
+				{% for fullpath, fileInfo in parsedContent %} 
+					{% set filename = fileInfo.getFilename %} 
+				
 				<tr style="background-color: {{ bgColors[i] }};">
 					<td style="padding-left: .3em; padding-right: .3em; text-align: left">
 						{{ fileInfo.getFilepath }}<a href="#{{ fullpath | sha1 }}">{{ filename }}</a>
@@ -27,13 +28,13 @@
 					</td> 
 					<td  nowrap="" style="padding-left: .3em; padding-right: .3em; text-align: left;"	align="center"> 
 					 	{% if fileInfo.isAdded %} 
-							Added -> <a href="svn_url">{{ svnHeadInfo.getRevision }}</a>
+							Added -> <a href="{{ svnWebConfig.base_url }}">{{ svnHeadInfo.getRevision }}</a>
 							{% set addedFiles = addedFiles + 1 %} 
 						{% elseif fileInfo.isRemoved %} 
-							<a href="svn_url">{{ svnPrevInfo.getRevision }}</a> -> Removed
+							<a href="{{ svnWebConfig.base_url }}">{{ svnPrevInfo.getRevision }}</a> -> Removed
 							{% set deletedFiles = deletedFiles + 1 %} 
 						{% else %} 
-							<a href="svn_url">{{ svnPrevInfo.getRevision }}</a> <a href="svn_url">-></a> <a href="svn_url">{{ svnHeadInfo.getRevision }}</a>
+							<a href="{{ svnWebConfig.base_url }}">{{ svnPrevInfo.getRevision }}</a> <a href="{{ svnWebConfig.base_url }}">-></a> <a href="svn_url">{{ svnHeadInfo.getRevision }}</a>
 							{% set modifiedFiles = modifiedFiles + 1 %} 
 						{% endif %}
 					</td> 
@@ -43,7 +44,7 @@
 			</tbody>
 		</table>  
 		<small style="color:#888888">{{ addedFiles }} added + {{ deletedFiles }} removed + {{ modifiedFiles }} modified, total {{ addedFiles + deletedFiles + modifiedFiles }}</small>
-		{% if todo is not null %} 
+		{% if todo is not empty %} 
 			<div style="padding: 4px; border: 1px dashed #000000; margin-top: 1em">
 				<ul style="margin-top: 0; margin-bottom: 0">
 					{% for fullpath,tasks in todo %} 
@@ -54,9 +55,9 @@
 				</ul>
 			</div> 
 		{% endif %}
-		<pre style="padding: 4px; border: 1px dashed #000000; background-color: #ffffdd">
+		<div style="padding: 4px; border: 1px dashed #000000; background-color: #ffffdd">
 			{{ svnCommitMessage }} 
-		</pre> 
+		</div>
 		<hr style="border-width:0px;min-height:2px;background:black"> 
 		{% set svnColors = ["#eeeeee","#ddffdd","#ffdddd"] %}
 		{% set split_path = path.getName | split('/') %} 

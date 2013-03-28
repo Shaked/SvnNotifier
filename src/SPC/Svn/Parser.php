@@ -27,14 +27,18 @@ class Parser {
      * @var string
      */
     private $path = '';
+    /**
+     * @var string
+     */
+    private $todo = '';
     
     const STATUS_ADDED         = '+';
     const STATUS_MODIFIED      = 'M'; 
     const STATUS_REMOVED       = '-';
     const STATUS_EQUAL         = ' ';
     const STATUS_TEXT_ADDED    = 1;
-    const STATUS_TEXT_REMOVED  = -1;
-    const STATUS_TEXT_EQUAL    = 0;
+    const STATUS_TEXT_REMOVED  = 0;
+    const STATUS_TEXT_EQUAL    = -1;
     const TODO                 = 'todo';
      
    

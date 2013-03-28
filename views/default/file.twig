@@ -2,10 +2,10 @@
 	<span style="font-family: monospace; float: right"> 
 	{% spaceless %} 
 		{%- for fpath in split_path -%} 
-			<a href="svn_url/{{ fpath }}" target="_blank">{{ fpath }}</a>/
+			<a href="{{ svnWebConfig.base_url }}/{{ fpath }}" target="_blank">{{ fpath }}</a>/
 		{% endfor %}
 		{%- for fpath in split_fullpath -%} 
-			<a href="svn_url/{{ path.getName }}/{{ fpath }}" target="_blank">{{ fpath }}</a>{% if not loop.last %}/{% endif %} 
+			<a href="{{ svnWebConfig.base_url }}/{{ path.getName }}/{{ fpath }}" target="_blank">{{ fpath }}</a>{% if not loop.last %}/{% endif %} 
 		{% endfor %}
 	{% endspaceless %} 
 	</span> 
