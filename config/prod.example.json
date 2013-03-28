@@ -1,0 +1,30 @@
+{
+    "debug": true,
+    "svn": {
+    	"WebsiteRepo":{
+    		"username":"username",
+    		"password":"password",
+    		"repo":"http://localhost/svn/repo/trunk"
+    	}
+    },
+    "swiftmailer": {
+		"host":"smtp.gmail.com",
+    	"port":465,
+    	"username":"email@gmail.com",
+    	"name":"email@gmail.com", 
+    	"password":"password",
+    	"encryption":"ssl",
+    	"auth_mode":"login",
+    	"override": ["email1@gmail.com", "email2@gmail.com"] 
+    },
+    "swiftmailer.class_path":"../vendor/swiftmailer/lib/classes",
+    "diff":{
+    	"mail":{
+    		"subject":"SPC, %repoName:%author - rev: %rev",
+    		"params" :[ 
+    			"rev",
+    			"author"
+    		]
+    	}
+    }
+}

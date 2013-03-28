@@ -1,0 +1,18 @@
+{
+    "require": {
+        "silex/silex": "1.0.*@dev",
+        "igorw/config-service-provider": "1.0.*@dev",
+	    "symfony/twig-bridge": "2.1.*",
+	    "swiftmailer/swiftmailer": ">=4.1.2,<4.2-dev",
+	    "symfony/validator": "~2.1",
+	    "webcreate/util": "dev-master", 
+	    "webcreate/vcs": "dev-master"
+    },
+    "autoload": { 
+    	"psr-0": { 
+    		"SPC": [
+    			"./src"
+    		]
+    	} 
+    }
+}
