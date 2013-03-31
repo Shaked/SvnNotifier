@@ -40,9 +40,12 @@
 					</td> 
 				</tr>    
 				{% set i = 1 - i %} 
-			{% endfor %} 
+			{% endfor %}  
 			</tbody>
 		</table>  
+		<div style="margin: 3px 0;">
+			{{ svnHeadInfo.getDate.format(constant('DateTime::COOKIE')) }}
+		</div>
 		<small style="color:#888888">{{ addedFiles }} added + {{ deletedFiles }} removed + {{ modifiedFiles }} modified, total {{ addedFiles + deletedFiles + modifiedFiles }}</small>
 		{% if todo is not empty %} 
 			<div style="padding: 4px; border: 1px dashed #000000; margin-top: 1em">
