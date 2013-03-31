@@ -164,9 +164,7 @@ pip-log.txt
 
 # eclipse
 .settings
-
-# silex
-vendor
+ 
 
 # composer
 composer.phar

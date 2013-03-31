@@ -1,0 +1,24 @@
+{
+    "name": "webcreate/util",
+    "type": "library",
+    "keywords": ["util"],
+    "description": "Webcreate/Util is a PHP library containing some simple utility classes.",
+    "homepage": "https://github.com/webcreate/util",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeroen Fiege",
+            "email": "jeroen@webcreate.nl",
+            "homepage": "http://www.fieg.nl"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Webcreate": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/process": ">=2.1.2"
+    }
+}
