@@ -67,7 +67,6 @@ class Controller
             'originalContent'  => $parser->getContent(), 
             'svnWebConfig'     => $app['svn']['web'],
         ));
-        die($content);
         return $this->sendMail($app,$mailTo,$subject,$content);   
     }
     
