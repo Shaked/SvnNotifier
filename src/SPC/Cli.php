@@ -11,7 +11,7 @@ class Cli {
     /**
      * 
      * @param array $options
-     * @throws Cli_Exception
+     * @throws CliException
      * @return Ambigous <\Symfony\Component\HttpFoundation\Request, \Symfony\Component\HttpFoundation\Request>
      */
     public static function createRequest(array $options = null){
@@ -21,14 +21,14 @@ class Cli {
         }
         
         if (!isset($options)){
-            throw new Cli_Exception(); 
+            throw new CliException(); 
         }
         
         if (!isset($options['r'])){
-            throw new Cli_Exception('Missing repository name (-r)'); 
+            throw new CliException('Missing repository name (-r)'); 
         }
         if (!isset($options['e'])){
-            throw new Cli_Exception('Missing recipients (-e)'); 
+            throw new CliException('Missing recipients (-e)'); 
         }
         
         $path = '/' . $options['r'] . '/' . $options['e'];
@@ -36,7 +36,7 @@ class Cli {
     }
 }
 
-class Cli_Exception extends \Exception{
+class CliException extends \Exception{
     
     public function __construct($message=null,$code=null,$previous=null){
         parent::__construct($message,$code,$previous); 

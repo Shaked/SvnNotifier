@@ -2,11 +2,11 @@
 $loader = require_once __DIR__ . '/../vendor/autoload.php';
 use SPC\Application; 
 use SPC\Cli;
-use SPC\Cli_Exception;
+use SPC\CliException;
 $options = getopt('r:e:',array('env:'))? :null;
 try { 
     $request = Cli::createRequest($options);
-} catch(Cli_Exception $e){ 
+} catch(CliException $e){ 
     die($e->getMessage()); 
 }
 $env = isset($env)? $env: Application::ENV_DEV;

@@ -65,7 +65,7 @@ class Application extends \Silex\Application {
 
 	private function initRouting() {
 	    $this->get('/{repoName}/{mailTo}', function(Application $app,$repoName, $mailTo){
-	        if (!isset($app['svn'][$repoName])){
+	        if (!isset($app['svn']['repos'][$repoName])){
 	            throw new ApplicationException("Repository name: $repoName does not exist in config file.");
 	        }
 	        $request       = $app['request'];

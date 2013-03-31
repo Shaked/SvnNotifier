@@ -27,12 +27,13 @@ class Controller
      */
     private $svn; 
     
-    const PARAM_REPO_NAME = "%repoName"; 
+    const PARAM_REPO_NAME  = "%repoName";
+    const SUCCCESS_MESSAGE = "Email was sent successfully";  
      
     public function __construct(Application $app,$repoName){
         $this->repoName = $repoName; 
-        $this->svn = new Svn($app['svn'][$this->repoName]['url']);
-        $this->svn->setCredentials($app['svn'][$this->repoName]['username'], $app['svn'][$this->repoName]['password']);
+        $this->svn = new Svn($app['svn']['repos'][$this->repoName]['url']);
+        $this->svn->setCredentials($app['svn']['repos'][$this->repoName]['username'], $app['svn']['repos'][$this->repoName]['password']);
     }   
 
     /**
@@ -45,7 +46,7 @@ class Controller
      */
     public function mailDiff (Request $request, Application $app, array $mailTo)
     {  
-        $path          = new Reference($app['svn'][$this->repoName]['path']); 
+        $path          = new Reference($app['svn']['repos'][$this->repoName]['path']); 
         $log           = $this->svn->log($path);
         /* @var $head Commit */
         $head          = array_shift($log);
@@ -55,7 +56,7 @@ class Controller
         $diff          = $this->svn->diff($path,$path,$head->getRevision(), $prev->getRevision(),false);  
         $parser        = new Parser();
         $parser->run($diff, $head, $path); 
-        $subject       = $this->parseSubject($app['diff']['mail'], $head);
+        $subject       = $this->parseSubject($app, $head);
         $content       = $app->getTwig()->render('default.twig', array(
             'path'             => $path,  
             'parsedContent'    => $parser->getParsedContent(),
@@ -67,9 +68,20 @@ class Controller
             'originalContent'  => $parser->getContent(), 
             'svnWebConfig'     => $app['svn']['web'],
         ));
-        return $this->sendMail($app,$mailTo,$subject,$content);   
+ 
+        $this->sendMail($app,$mailTo,$subject,$content);
+        return self::SUCCCESS_MESSAGE; 
+ 
     }
     
+    /**
+     * @param Application $app
+     * @param unknown $mailTo
+     * @param unknown $subject
+     * @param unknown $content
+     * @throws ControllerException
+     * @return boolean
+     */
     private function sendMail(Application $app,$mailTo,$subject,$content){
         $message = Message::newInstance($app['swiftmailer']['override'])->setFrom($app['swiftmailer']['name'])
             ->setTo($mailTo)
@@ -91,9 +103,10 @@ class Controller
      * @throws ControllerException
      * @return mixed
      */
-    private function parseSubject(array $mailConfig,Commit $head){
-        $subject       = str_replace(self::PARAM_REPO_NAME, $this->repoName, $mailConfig['subject']);
-        $subjectParams = $mailConfig['params'];
+    private function parseSubject(Application $app,Commit $head){
+        $repoMapName   = $this->getRepoMapName($app['svn']['repoMap'],$this->repoName); 
+        $subject       = str_replace(self::PARAM_REPO_NAME, $repoMapName, $app['diff']['mail']['subject']);
+        $subjectParams = $app['diff']['mail']['params'];
         
         foreach($subjectParams as $param){
             $method = 'get' . ucfirst($param);
@@ -102,6 +115,15 @@ class Controller
         
         
         return $subject; 
+    }
+    
+    /**
+     * @param array $repoMap
+     * @param string $repoName
+     * @return string
+     */
+    private function getRepoMapName(array $repoMap,$repoName){
+        return isset($repoMap[$this->repoName])? $repoMap[$this->repoName]:$repoName;
     }
 }
 
