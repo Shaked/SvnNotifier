@@ -1,29 +1,40 @@
 {
     "debug": true,
     "svn": {
-    	"WebsiteRepo":{
-    		"username":"username",
-    		"password":"password",
-    		"repo":"http://localhost/svn/repo/trunk"
-    	}
+    	"repos":{
+	    	"WebsiteRepo":{
+	    		"username":"username",
+	    		"password":"passwrod",
+	    		"url":"http://localhost/svn/repo", 
+	    		"path":"trunk"
+	    	}
+	    },
+    	"web":{
+    		"base_url":"http://svn_url", 
+    		"diff":"/diff_url?repo=%repo"
+    	},
+		"repoMap": { 
+			"WebsiteRepo":"Site Release",
+			"AnotherRepo":"Another Name"
+		}
     },
     "swiftmailer": {
 		"host":"smtp.gmail.com",
     	"port":465,
-    	"username":"email@gmail.com",
-    	"name":"email@gmail.com", 
+    	"username":"username@gmail.com",
+    	"name":"username@gmail.com", 
     	"password":"password",
     	"encryption":"ssl",
     	"auth_mode":"login",
-    	"override": ["email1@gmail.com", "email2@gmail.com"] 
+    	"override": "username+override@gmail.com"
     },
     "swiftmailer.class_path":"../vendor/swiftmailer/lib/classes",
     "diff":{
     	"mail":{
-    		"subject":"SPC, %repoName:%author - rev: %rev",
+    		"subject":"%repoName Update: %revision | %author",
     		"params" :[ 
-    			"rev",
-    			"author"
+    			"revision",
+    			"author" 
     		]
     	}
     }
