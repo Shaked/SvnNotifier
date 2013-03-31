@@ -169,5 +169,4 @@ pip-log.txt
 vendor
 
 # composer
-composer.lock
 composer.phar
