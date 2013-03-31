@@ -19,3 +19,4 @@ Usage:
   cli:/path/web/> php index.php -r repoName -e myemail@shakedos.com,another@example.com
 ```
 
+Based on [CVSSPAN](http://www.badgers-in-foil.co.uk/projects/cvsspam/)
