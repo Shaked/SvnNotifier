@@ -15,6 +15,11 @@ class Cli {
      * @return Ambigous <\Symfony\Component\HttpFoundation\Request, \Symfony\Component\HttpFoundation\Request>
      */
     public static function createRequest(array $options = null){
+        //Browser support
+        if (!isset($_SERVER['argv'])){ 
+            return null;
+        }
+        
         if (!isset($options)){
             throw new Cli_Exception(); 
         }
