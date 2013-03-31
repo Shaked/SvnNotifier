@@ -1,4 +1,21 @@
 {
+	"name": "shaked/svnnotifier",
+	"type": "library",
+    "description": "Svn post commit email notifications based PHP and Silex",
+    "keywords": ["svn","post commit"],
+    "homepage": "http://github.com/Seldaek/monolog",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shaked Klein Orbach",
+            "email": "svnnotifier@shakedos.com",
+            "homepage": "http://www.shakedos.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
     "require": {
         "silex/silex": "1.0.*@dev",
         "igorw/config-service-provider": "1.0.*@dev",
