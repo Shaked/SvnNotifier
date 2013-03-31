@@ -7,12 +7,6 @@ Svn post commit notifier based Silex notifies about SVN commits via email.
 - Works with a twig template which lets you add your own (and share with others as well) 
 - Easy to use 
 
-Installation using Composer: 
-
-```
-	"require":"shaked/svnnoifier": "dev-master"
-```
-
 Usage: 
 
 ``` 
