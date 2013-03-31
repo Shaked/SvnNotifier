@@ -9,7 +9,7 @@ try {
 } catch(CliException $e){ 
     die($e->getMessage()); 
 }
-$env = isset($env)? $env: Application::ENV_DEV;
+$env = isset($env)? $env: Application::ENV_PROD;
 $app = new Application($env,__DIR__);
 $app->init()->run($request);
 exit(); 
