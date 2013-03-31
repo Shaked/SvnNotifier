@@ -14,9 +14,7 @@
         } 
     ],
     "require": {
-        "php": ">=5.3.0"
-    },
-    "require": {
+        "php": ">=5.3.0",
         "silex/silex": "1.0.*@dev",
         "igorw/config-service-provider": "1.0.*@dev",
 	    "symfony/twig-bridge": "2.1.*",
