@@ -1,9 +1,9 @@
 {
-	"name": "shaked/svnnotifier",
+	"name": "Shaked/SvnNoifier",
 	"type": "library",
     "description": "Svn post commit email notifications based PHP and Silex",
     "keywords": ["svn","post commit"],
-    "homepage": "http://github.com/Seldaek/monolog",
+    "homepage": "http://github.com/Shaked",
     "license": "MIT",
     "authors": [
         {
