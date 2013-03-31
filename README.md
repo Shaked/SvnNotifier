@@ -8,6 +8,7 @@ Svn post commit notifier based Silex notifies about SVN commits via email.
 - Easy to use 
 
 Installation: 
+==============
 ```
   composer update 
   OR
@@ -15,20 +16,22 @@ Installation:
 ```
 
 Usage: 
-
+======
 ``` 
   cli:/path/web/> php index.php -r repoName -e myemail@shakedos.com,another@example.com
 ```
 
+Using:
+=====
+```
+	Silex
+	Config Service Provider 
+	Twig Bridge
+	Swiftmailer 
+	Symfony Validator 
+	Webcreate Util 
+	Webcreate Vcs
+```
+
 Based on [CVSSPAM](http://www.badgers-in-foil.co.uk/projects/cvsspam/)
 
-Using:
-```
-      Silex
-      Config Service Provider 
-      Twig Bridge
-	    Swiftmailer 
-	    Symfony Validator 
-	    Webcreate Util 
-	    Webcreate Vcs
-```
