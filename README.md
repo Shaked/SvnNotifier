@@ -1,4 +1,4 @@
-SvnNoifier
+SvnNotifier
 ==========
 
 Svn post commit notifier based Silex notifies about SVN commits via email. 
