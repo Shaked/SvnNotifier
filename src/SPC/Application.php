@@ -64,7 +64,7 @@ class Application extends \Silex\Application {
 	}
 
 	private function initRouting() {
-	    $this->get('/{repoName}/{mailTo}', function(Application $app,$repoName, $mailTo){
+	    $this->get('/{repoName}/{mailTo}/{revision}', function(Application $app,$repoName, $mailTo,$revision){
 	        if (!isset($app['svn']['repos'][$repoName])){
 	            throw new ApplicationException("Repository name: $repoName does not exist in config file.");
 	        }
@@ -81,7 +81,7 @@ class Application extends \Silex\Application {
 	            throw new ApplicationException("MailTo parameter is required. please use: email1,email2,email3,....,emailN");
 	        }
 	        $controller    = new Svn\Controller($app,$repoName);
-	        $response      = $controller->mailDiff($request, $app, $mailTo);
+	        $response      = $controller->mailDiff($request, $app, $mailTo,$revision);
 	        return $response;
 	    });
 	    

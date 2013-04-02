@@ -24,14 +24,19 @@ class Cli {
             throw new CliException(); 
         }
         
-        if (!isset($options['r'])){
-            throw new CliException('Missing repository name (-r)'); 
+        if (!isset($options['n'])){
+            throw new CliException('Missing repository name (-n)'); 
         }
         if (!isset($options['e'])){
             throw new CliException('Missing recipients (-e)'); 
         }
         
-        $path = '/' . $options['r'] . '/' . $options['e'];
+        $revision = 0; 
+        if (isset($options['r'])){
+            $revision = $options['r'];
+        }
+
+        $path = '/' . $options['n'] . '/' . $options['e'] . '/' . $revision;
         return Request::create($path, self::REQUEST_METHOD_GET);
     }
 }
@@ -51,7 +56,8 @@ class CliException extends \Exception{
         
 ----------------- ### HELP ### ----------------- 
 Parameter Name    |    Description
--r                | Repository name 
+-n                | Repository name 
+-r                | Revision 
 -e                | Recipientes - email1,email2 (Comma separated) 
 
 Example: 
