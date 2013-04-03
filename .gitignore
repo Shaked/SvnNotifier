@@ -170,3 +170,6 @@ vendor
 
 # composer
 composer.phar
+
+# sublime 2
+sftp-config.json
