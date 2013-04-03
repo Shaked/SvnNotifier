@@ -33,7 +33,7 @@ class Cli {
         
         $revision = 0; 
         if (isset($options['r'])){
-            $revision = $options['r'];
+            $revision = urlencode($options['r']); // encode semi colon r1:r2 
         }
 
         $path = '/' . $options['n'] . '/' . $options['e'] . '/' . $revision;

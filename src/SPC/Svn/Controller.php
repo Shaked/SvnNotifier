@@ -30,7 +30,7 @@ class Controller
     const PARAM_REPO_NAME  = "%repoName";
     const SUCCCESS_MESSAGE = "Email was sent successfully";  
     const SVN_LOG_LIMIT    = 2;
-    
+
     public function __construct(Application $app,$repoName){
         $this->repoName = $repoName; 
         $this->svn = new Svn($app['svn']['repos'][$this->repoName]['url']);
@@ -49,7 +49,7 @@ class Controller
     public function mailDiff (Request $request, Application $app, array $mailTo, $revision)
     {  
         $path          = new Reference($app['svn']['repos'][$this->repoName]['path']); 
-        $log           = $this->svn->log($pat,$revision,self::SVN_LOG_LIMIT);
+        $log           = $this->svn->log($path,$revision,self::SVN_LOG_LIMIT);
         /* @var $head Commit */
         $head          = array_shift($log);
         /* @var $prev Commit */

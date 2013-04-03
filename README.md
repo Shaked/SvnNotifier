@@ -18,7 +18,13 @@ Installation:
 Usage: 
 ======
 ``` 
-  cli:/path/web/> php index.php -r repoName -e myemail@shakedos.com,another@example.com
+  cli:/path/web/> php index.php -n repoName -e myemail@shakedos.com,another@example.com 
+
+  Optional parameter -r to specify revision(s) number(s) 
+
+  cli:/path/web/> php index.php -n repoName -e myemail@shakedos.com,another@example.com -r r1
+
+  cli:/path/web/> php index.php -n repoName -e myemail@shakedos.com,another@example.com -r r1:r2 
 ```
 
 Using:

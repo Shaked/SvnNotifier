@@ -80,6 +80,7 @@ class Application extends \Silex\Application {
 	        if (empty($mailTo)){
 	            throw new ApplicationException("MailTo parameter is required. please use: email1,email2,email3,....,emailN");
 	        }
+	        $revision	   = urldecode($revision); //decode to support semi colon r1:r2 
 	        $controller    = new Svn\Controller($app,$repoName);
 	        $response      = $controller->mailDiff($request, $app, $mailTo,$revision);
 	        return $response;
