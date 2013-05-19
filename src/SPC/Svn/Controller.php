@@ -9,8 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\App_Svn_Parser;
 use SPC\Swift\Mailer;
-use SPC\Swift\Message
-;use Webcreate\Vcs\Common\Reference;
+use SPC\Swift\Message;
+use Webcreate\Vcs\Common\Reference;
+use Webcreate\Vcs\Svn\Parser\CliParser;
+use Webcreate\Util\Cli;
+use Webcreate\Vcs\Common\Adapter\CliAdapter;
 /**
  * 
  * @author Shaked
@@ -33,7 +36,7 @@ class Controller
 
     public function __construct(Application $app,$repoName){
         $this->repoName = $repoName; 
-        $this->svn = new Svn($app['svn']['repos'][$this->repoName]['url']);
+        $this->svn = new Svn($app['svn']['repos'][$this->repoName]['url'],new CliAdapter($app['svn']['repos'][$this->repoName]['bin'], new Cli(), new CliParser()));
         $this->svn->setCredentials($app['svn']['repos'][$this->repoName]['username'], $app['svn']['repos'][$this->repoName]['password']);
     }   
 
@@ -54,7 +57,11 @@ class Controller
         $head          = array_shift($log);
         /* @var $prev Commit */
         $prev          = array_shift($log);  
-         
+        
+        if (!$prev){
+            $prev = $head;
+        }
+
         $diff          = $this->svn->diff($path,$path,$head->getRevision(), $prev->getRevision(),false);  
         $parser        = new Parser();
         $parser->run($diff, $head, $path); 
