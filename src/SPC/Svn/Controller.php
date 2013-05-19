@@ -53,11 +53,11 @@ class Controller
     {  
         $path          = new Reference($app['svn']['repos'][$this->repoName]['path']); 
         $log           = $this->svn->log($path,$revision,self::SVN_LOG_LIMIT);
+ 
         /* @var $head Commit */
         $head          = array_shift($log);
         /* @var $prev Commit */
-        $prev          = array_shift($log);  
-        
+        $prev          = array_shift($log);   
         if (!$prev){
             $prev = $head;
         }
@@ -76,8 +76,8 @@ class Controller
             'repoName'         => $this->repoName, 
             'originalContent'  => $parser->getContent(), 
             'svnWebConfig'     => $app['svn']['web'],
-        ));
- 
+        ));  
+
         $this->sendMail($app,$mailTo,$subject,$content);
         return self::SUCCCESS_MESSAGE; 
  

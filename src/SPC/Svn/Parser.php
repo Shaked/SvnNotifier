@@ -118,6 +118,7 @@ class Parser {
          
         $rows           = explode(PHP_EOL, $this->content);  
         $parsedContent  = array();
+
         foreach ($rows as $key=>$row) {
             preg_match("#Index:\s(.*)#", $row,$matches);
             if (!empty($matches[1])) {

@@ -58,12 +58,12 @@ class Application extends \Silex\Application {
            $twig->addFilter('constant', new \Twig_Filter_Function('constant', array('is_safe' => array('html'))));
            $twig->addFilter('explode', new \Twig_Filter_Function('explode', array('is_safe' => array('html'))));
            $twig->addFilter('implode', new \Twig_Filter_Function('implode', array('is_safe' => array('html'))));
-           $twig->addFilter('sha1', new \Twig_Filter_Function('sha1', array('is_safe' => array('html'))));
+           $twig->addFilter('sha1', new \Twig_Filter_Function('sha1', array('is_safe' => array('html')))); 
            return $twig;
         }));
 	}
 
-	private function initRouting() {
+	private function initRouting() { 
 	    $this->get('/{repoName}/{mailTo}/{revision}', function(Application $app,$repoName, $mailTo,$revision){
 	        if (!isset($app['svn']['repos'][$repoName])){
 	            throw new ApplicationException("Repository name: $repoName does not exist in config file.");

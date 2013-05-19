@@ -18,21 +18,18 @@
 			<a href="svn_url/filedetails.php?repname={{ repoName }}&amp;path={{ fullpath }}&amp;rev={{ svnPrevInfo.getRevision }}" target="_blank">{{ svnPrevInfo.getRevision }}</a>
 		</small>
 	</div>
-	<div style="margin: 0">
-		{% spaceless %} 
+	<div style="margin: 0"> 
 		<div style="margin: 0; color: #888888; font-size: 11px">	
 			{% for content in fileInfo.getHeadContent %} 
-				<div>{{ content }}</div> 
+				<div>{{ content  }}</div> 
 			{% endfor %}
-		</div>
-		{% endspaceless %} 
+		</div> 
 	</div>
 	{% for info in fileInfo.getInfo %} 
 		{% set key = info.getMethod+1 %} 
 		<div style="margin: 0; background-color: {{ svnColors[key] }}">
-			{{ info.getContent }}
+			{# using pre to apply spaces and tabes #}
+			<pre style="margin:0;">{{ info.getContent }}</pre>
 		</div>
 	{% endfor %}    
 </div>
-
-
